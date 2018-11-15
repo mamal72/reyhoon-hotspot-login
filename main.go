@@ -19,7 +19,7 @@ func getLoginFormAddress() string {
 	return fmt.Sprintf("http://%s/login", reyhoonHotspotIP)
 }
 
-func loadEnvVars() {
+func init() {
 	reyhoonHotspotIP = os.Getenv("RHN_HS_IP")
 	reyhoonHotspotUsername = os.Getenv("RHN_HS_USERNAME")
 	reyhoonHotspotPassword = os.Getenv("RHN_HS_PASSWORD")
@@ -31,7 +31,6 @@ func loadEnvVars() {
 }
 
 func main() {
-	loadEnvVars()
 	address := getLoginFormAddress()
 	response, err := http.PostForm(address, url.Values{
 		"username": {reyhoonHotspotUsername},
